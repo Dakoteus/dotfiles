@@ -37,7 +37,7 @@ exec --no-startup-id nm-applet
 exec xrandr --output DisplayPort-1 --mode "2560x1440" -r 144.0
 exec xrandr --output DisplayPort-2 --mode "2560x1440" -r 144.0
 
-exec feh --bg-scale ~/.wp/active_wp.jpg
+exec feh --bg-scale ~/.config/wp/active_wp.jpg
 
 exec --no-startup-id sleep 3 && picom -b
 
