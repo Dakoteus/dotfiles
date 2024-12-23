@@ -30,36 +30,31 @@ function fish_prompt
         set retc $argv[1]
         set -l field_name $argv[2]
         set -l field_value $argv[3]
-
+		
         set_color normal
-        set_color $retc
+		set_color green
         echo -n '─'
-        set_color -o green
         echo -n '['
-        set_color normal
         test -n $field_name
         and echo -n $field_name:
-        set_color $retc
         echo -n $field_value
-        set_color -o green
         echo -n ']'
     end
 
-	set -l shell_level $SHLVL
     set_color $retc
     echo -n '┬─'
-    set_color -o green
+    set_color green
     echo -n [
-	set_color -o red
-	if [ $shell_level -gt 1 ]
-		echo -n "L$shell_level | "
+	if [ $SHLVL -gt 1 ]
+		set_color -o brblue
+		echo -n "L$SHLVL|"
 	end
-	set_color -o green
+	set_color green
 
     if functions -q fish_is_root_user; and fish_is_root_user
         set_color -o red
     else
-        set_color -o yellow
+        set_color -o cyan
     end
 
     echo -n $USER
@@ -67,15 +62,16 @@ function fish_prompt
     echo -n @
 
     if test -z "$SSH_CLIENT"
-        set_color -o blue
+        set_color -o green
     else
-        set_color -o cyan
+        set_color -o green
     end
 
     echo -n (prompt_hostname)
-    set_color -o white
+    set_color white
     echo -n :(prompt_pwd)
-    set_color -o green
+	set_color normal
+    set_color green
     echo -n ']'
 
     # Date
