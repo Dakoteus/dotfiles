@@ -21,12 +21,6 @@ Plug 'https://github.com/xolox/vim-easytags.git'
 let b:easytags_auto_highlight=1
 Plug 'https://github.com/xolox/vim-misc.git'
 Plug 'https://github.com/octol/vim-cpp-enhanced-highlight'
-"Plug 'https://github.com/w0rp/ale.git'
-"let g:ale_c_clang_options = '-Og -Weverything -g -pipe -std=gnu17'
-"let g:ale_c_gcc_options = '-Og -Wall -Wextra -Wpedantic -fvar-tracking-assignments -g -pipe'
-"let g:ale_cpp_clang_options = '-Og -Weverything -g -pipe -std=gnu++17'
-"let g:ale_cpp_gcc_options = '-Og -Wall -Wextra -Wpedantic -fvar-tracking-assignments -g -pipe -std=gnu++17'
-"let g:ale_use_global_executables = 1
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 silent! colorscheme gruvbox
@@ -47,7 +41,7 @@ set mouse=a
 set nobackup
 set noswapfile
 set nowritebackup
-set number
+set rnu
 set numberwidth=1
 set omnifunc=syntaxcomplete#Complete
 set path+=**

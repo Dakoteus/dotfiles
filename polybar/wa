@@ -1,0 +1,15 @@
+#!/bin/sh
+
+BAR_PTH="/home/dako/.config/polybar"
+OUT="$BAR_PTH/last_wa.txt"
+APPID=KVW564-9JHG36353Y
+VIEWER="display"
+BG="transparent"
+FG="white"
+test "$APPID" == "" && echo "\$APPID not set in ${BASH_SOURCE[0]}"
+inp=$*
+RESPONSE=$(echo -n "$inp: " > "$OUT"; curl -s "https://api.wolframalpha.com/v1/result?appid=$APPID&units=metric&" --data-urlencode "i=$inp" | tee -a "$OUT")
+
+# Remove next if you are fine with text only api, and don't want to see any images
+test "No short answer available" = "$RESPONSE"\
+     && curl -s "https://api.wolframalpha.com/v1/simple?appid=$APPID&units=metric&foreground=$FG&background=$BG" --data-urlencode "i=$*" | $VIEWER || exit 0
