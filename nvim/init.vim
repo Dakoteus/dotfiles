@@ -22,6 +22,8 @@ let b:easytags_auto_highlight=1
 Plug 'https://github.com/xolox/vim-misc.git'
 Plug 'https://github.com/octol/vim-cpp-enhanced-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 call plug#end()
 silent! colorscheme gruvbox
 endif
@@ -47,9 +49,11 @@ set omnifunc=syntaxcomplete#Complete
 set path+=**
 set secure
 set shada=
+filetype plugin indent on
 set shiftwidth=4
-set spell
 set tabstop=4
+set expandtab
+set spell
 set termguicolors
 set wildmode=longest:full,full
 set ignorecase
@@ -57,3 +61,13 @@ inoremap <C-S> <C-O>:update<CR>
 noremap <C-S> :update<CR>
 nmap <F8> :TagbarToggle<CR>
 inoremap <silent><expr> <C-tab> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <F5> <C-O>:!g++ --std=c++17 % -o out && ./out<CR>
+noremap <F5> :!g++ --std=c++17 % -o out && ./out<CR>
+noremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+	if CocAction('hasProvider', 'hover')
+		call CocActionAsync('doHover')
+	else
+		call feedkeys('K','in')
+	endif
+endfunction
